@@ -1,0 +1,78 @@
+# .gitignore
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Logs and databases
+*.log
+*.sqlite
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.pytest_cache/
+
+### Project Specific ###
+# Environment files
+config/.env
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Data directories
+data/
+!data/.gitkeep  # Optional: Keep empty dir
+
+# Log files
+logs/
+!logs/.gitkeep  # Optional: Keep empty dir
+
+# IDE specific
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+
+# Local development
+venv/
+.venv/
+ENV/
+env/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Temp files
+*.tmp
+*.bak
+*~
