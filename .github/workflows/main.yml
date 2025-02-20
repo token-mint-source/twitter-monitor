@@ -1,0 +1,34 @@
+name: Twitter Monitor Bot
+on:
+  schedule:
+    - cron: '0 */3 * * *'  
+  workflow_dispatch:        
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Twitter Monitor
+        env:
+          BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/tweet_monitor.py
+
+      - name: Archive tweet data
+        uses: actions/upload-artifact@v3
+        with:
+          name: tweets-${{ github.run_id }}
+          path: data/tweets/
+          retention-days: 7
