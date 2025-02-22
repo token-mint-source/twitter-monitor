@@ -63,4 +63,4 @@ class TweetMonitor:
             return tweets
 
         except tweepy.TweepyException as e:
-            logging.error(f"Twitter API error: {str(e)}
+            logging.error(f"Twitter API error: {str(e)}")  
