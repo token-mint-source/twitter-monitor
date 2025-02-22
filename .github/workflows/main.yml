@@ -8,8 +8,9 @@ jobs:
   monitor:
     runs-on: ubuntu-latest
     steps:
+      # Fixed checkout step - was using wrong action previously
       - name: Checkout code
-        uses: actions/upload-artifact@v4
+        uses: actions/checkout@v4  # Changed from upload-artifact
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -24,7 +25,10 @@ jobs:
           BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/tweet_monitor.py
+        run: |
+          # Create data directory if it doesn't exist
+          mkdir -p data/tweets
+          python scripts/tweet_monitor.py
 
       - name: Archive tweet data
         uses: actions/upload-artifact@v4
